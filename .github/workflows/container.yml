@@ -8,17 +8,13 @@ on:
 
 defaults:
   run:
-    working-directory: packages/container
-
-permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: write  
+    working-directory: packages/container 
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
-      contents: read
+      id-token: write   # This is required for requesting the JWT
+      contents: write 
     steps:
       - uses: actions/checkout@v3
       - run: npm install

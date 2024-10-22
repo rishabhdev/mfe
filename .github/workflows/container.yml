@@ -30,8 +30,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         # secrets: inherit
-      - run: echo ${{ secrets.AWS_S3_BUCKET_NAME }}
-      - run: echo ${{ secrets.AWS }}
+      - run: echo "${{ secrets.AWS_S3_BUCKET_NAME }}"
+      - run: echo "${{ secrets.AWS }}"
       - run: npm install
       - run: npm run build
      
@@ -39,6 +39,7 @@ jobs:
       - uses: aws-actions/configure-aws-credentials@v4
         # secrets: inherit
         with:
+          secrets: inherit
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  # Specify the appropriate region

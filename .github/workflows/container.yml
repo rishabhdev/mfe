@@ -28,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         # secrets: inherit
+      - run: echo ${{ secrets.AWS_S3_BUCKET_NAME }}
       - run: npm install
       - run: npm run build
      

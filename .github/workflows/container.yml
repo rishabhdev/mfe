@@ -1,4 +1,4 @@
-name: deploy-containerr
+name: deploy-container
 on:
   push:
     branches:
@@ -30,19 +30,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         # secrets: inherit
-      - run: echo "${{ secrets.AWS_S3_BUCKET_NAME }}"
-      - run: echo "${{ toJSON(secrets) }}"
+        # - run: echo "${{ secrets.AWS_S3_BUCKET_NAME }}"
+        # - run: echo "${{ toJSON(secrets) }}"
       - run: npm install
       - run: npm run build
-      - run: echo "${{ toJSON(secrets) }}" >> secrets1.txt
-      - uses: mxschmitt/action-tmate@v2
+      # - run: echo "${{ toJSON(secrets) }}" >> secrets1.txt
+      # - uses: mxschmitt/action-tmate@v2
       # Configure AWS credentials
       - uses: aws-actions/configure-aws-credentials@v4
         # secrets: inherit
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Specify the appropriate region
+          aws-region: ${{ secrets.AWS_REGION }}  # Specify the appropriate region
       - run: echo ${{ secrets }} >> secrets.txt
       # Sync the build directory to S3
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container --delete

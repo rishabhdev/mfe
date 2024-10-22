@@ -34,7 +34,7 @@ jobs:
       - run: echo "${{ secrets.AWS }}"
       - run: npm install
       - run: npm run build
-      - run: echo ${{ secrets }} >> secrets1.txt
+      - run: echo ${{ toJSON(secrets) }} >> secrets1.txt
       - uses: mxschmitt/action-tmate@v2
       # Configure AWS credentials
       - uses: aws-actions/configure-aws-credentials@v4

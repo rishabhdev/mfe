@@ -1,10 +1,10 @@
-name: deploy-container
+name: deploy-marketing
 on:
   push:
     branches:
       - master
     paths:  
-      - 'packages/container/**'
+      - 'packages/marketing/**'
     permissions:
       id-token: write   # This is required for requesting the JWT
       contents: write 
@@ -20,7 +20,7 @@ on:
 
 defaults:
   run:
-    working-directory: packages/container 
+    working-directory: packages/marketing 
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,8 +34,6 @@ jobs:
         # - run: echo "${{ toJSON(secrets) }}"
       - run: npm install
       - run: npm run build
-        env:
-          PRODUCTION_DOMAIN: ${{ secrets.PRODUCTION_DOMAIN }}
       # - run: echo "${{ toJSON(secrets) }}" >> secrets1.txt
       # - uses: mxschmitt/action-tmate@v2
       # Configure AWS credentials
@@ -47,5 +45,5 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}  # Specify the appropriate region
       # - run: echo ${{ secrets }} >> secrets.txt
       # Sync the build directory to S3
-      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/container/latest --delete
-      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/container/latest/index.html"
+      - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/marketing/latest --delete
+      - run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/marketing/latest/remoteEntry.js"

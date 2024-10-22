@@ -10,6 +10,9 @@ defaults:
   run:
     working-directory: packages/container
 
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read  
 jobs:
   build:
     runs-on: ubuntu-latest

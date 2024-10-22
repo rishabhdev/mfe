@@ -9,8 +9,6 @@ on:
       id-token: write   # This is required for requesting the JWT
       contents: write 
     secrets:
-      AWS:
-        required: true
       AWS_ACCESS_KEY_ID:
         required: true
       AWS_SECRET_ACCESS_KEY:

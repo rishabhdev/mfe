@@ -5,7 +5,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const packageJson = require('../package.json');
 
 const devConfig = {
-  mode: 'production',
+  mode: 'development',
   output: {
     filename: '[name].[contenthash].js'
   },

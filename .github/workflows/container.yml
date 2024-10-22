@@ -12,7 +12,7 @@ defaults:
 
 permissions:
   id-token: write   # This is required for requesting the JWT
-  contents: read  
+  contents: write  
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -9,6 +9,8 @@ on:
       id-token: write   # This is required for requesting the JWT
       contents: write 
     secrets:
+      AWS:
+        required: true
       AWS_ACCESS_KEY_ID:
         required: true
       AWS_SECRET_ACCESS_KEY:
@@ -29,6 +31,7 @@ jobs:
       - uses: actions/checkout@v3
         # secrets: inherit
       - run: echo ${{ secrets.AWS_S3_BUCKET_NAME }}
+      - run: echo ${{ secrets.AWS }}
       - run: npm install
       - run: npm run build
      

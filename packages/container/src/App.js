@@ -6,7 +6,6 @@ export default () => {
   return (
     <div>
       PRODUCTION_DOMAIN--
-      {process.env.PRODUCTION_DOMAIN}
       <h1>Hi there!!!!</h1>
       <hr />
       <MarketingApp />
